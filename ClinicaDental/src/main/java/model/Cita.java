@@ -2,15 +2,15 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Citas {
+public class Cita {
 	
 	private Long id;
 	private LocalDateTime fechaHora;
 	
-	public Citas() {
+	public Cita() {
 	}
 
-	public Citas(Long id, LocalDateTime fechaHora) {
+	public Cita(Long id, LocalDateTime fechaHora) {
 		super();
 		this.id = id;
 		this.fechaHora = fechaHora;

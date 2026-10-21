@@ -2,15 +2,15 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Revisiones extends Citas{
+public class Revision extends Cita{
 	
 	private String anotaciones;
 	
-	public Revisiones() {
+	public Revision() {
 		super();
 	}
 
-	public Revisiones(Long id, LocalDateTime fechaHora,String anotaciones) {
+	public Revision(Long id, LocalDateTime fechaHora,String anotaciones) {
 		super(id, fechaHora);
 		this.anotaciones=anotaciones;
 	}

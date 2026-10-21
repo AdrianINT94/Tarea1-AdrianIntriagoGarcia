@@ -1,15 +1,15 @@
 package model;
 
-public class Alergias {
+public class Alergia {
 	
 	private Long id;
 	private String nombre;
 	
 	private Medicamento medicamento;
-	public Alergias() {
+	public Alergia() {
 		
 	}
-	public Alergias(Long id, String nombre,Medicamento medicamento) {
+	public Alergia(Long id, String nombre,Medicamento medicamento) {
 		this.id = id;
 		this.nombre = nombre;
 		this.medicamento = medicamento;

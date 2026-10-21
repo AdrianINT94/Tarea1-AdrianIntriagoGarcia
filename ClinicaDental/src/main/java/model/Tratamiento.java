@@ -3,19 +3,19 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Tratamientos {
+public class Tratamiento {
 	
 	private Long id;
 	private String nombre;
 	private LocalDate fechainicio;
 	private boolean consentimiento = false;
 	
-	private ArrayList<Citas> listacitas= new ArrayList<Citas>();
-	public Tratamientos() {
+	private ArrayList<Cita> listacitas= new ArrayList<Cita>();
+	public Tratamiento() {
 		
 	}
 
-	public Tratamientos(Long id, String nombre, LocalDate fechainicio, boolean consentimiento) {
+	public Tratamiento(Long id, String nombre, LocalDate fechainicio, boolean consentimiento) {
 		this.id = id;
 		this.nombre = nombre;
 		this.fechainicio = fechainicio;
@@ -62,11 +62,11 @@ public class Tratamientos {
 		this.consentimiento = consentimiento;
 	}
 	//añadir cita
-	public void añadircita(Citas cita) {
+	public void añadircita(Cita cita) {
 		this.listacitas.add(cita);
 	}
 	
-	public ArrayList<Citas> getListacitas() {
+	public ArrayList<Cita> getListacitas() {
 		return listacitas;
 	}
 

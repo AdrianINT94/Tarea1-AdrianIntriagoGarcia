@@ -8,13 +8,13 @@ public class Historial {
 	private Long numerohistorial;
 	private String descripcion;
 	
-	private ArrayList<Alergias>listalergias= new ArrayList<Alergias>();
+	private ArrayList<Alergia>listalergias= new ArrayList<Alergia>();
 	
 	public Historial() {
 	}
 
 	public Historial(Long id, Long numerohistorial, String descripcion) {
-		super();
+		
 		this.id = id;
 		this.numerohistorial = numerohistorial;
 		this.descripcion = descripcion;
@@ -44,11 +44,11 @@ public class Historial {
 		this.descripcion = descripcion;
 	}
 	
-	public void añadirAlergia(Alergias alergia) {
+	public void añadirAlergia(Alergia alergia) {
 		this.listalergias.add(alergia);
 	}
 	
-	public ArrayList<Alergias> getListalergias() {
+	public ArrayList<Alergia> getListalergias() {
 		return listalergias;
 	}
 

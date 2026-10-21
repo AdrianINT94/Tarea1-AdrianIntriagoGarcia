@@ -16,7 +16,7 @@ public class Paciente {
 	
 	private Historial historial;
 	
-	private ArrayList <Tratamientos> tratamientos= new ArrayList<Tratamientos>(); 
+	private ArrayList <Tratamiento> tratamientos= new ArrayList<Tratamiento>(); 
 	
 	public Paciente() {
 		
@@ -98,11 +98,12 @@ public class Paciente {
 	}
 
 	// añadir tratamiento
-	public void añadirTratamiento(Tratamientos Tratamiento) {
+	public void añadirTratamiento(Tratamiento Tratamiento) {
 		tratamientos.add(Tratamiento);
 	}
 	
-	public ArrayList<Tratamientos> getTratamientos() {
+	
+	public ArrayList<Tratamiento> getTratamientos() {
 		return tratamientos;
 	}
 

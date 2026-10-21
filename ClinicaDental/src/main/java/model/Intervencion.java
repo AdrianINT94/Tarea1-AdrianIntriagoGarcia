@@ -2,16 +2,16 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Intervenciones extends Citas{
+public class Intervencion extends Cita{
 	
 	
 	private int duracion;
 
-	public Intervenciones() {
+	public Intervencion() {
 		super();
 	}
 
-	public Intervenciones(Long id, LocalDateTime fechaHora,int duracion) {
+	public Intervencion(Long id, LocalDateTime fechaHora,int duracion) {
 		super(id, fechaHora);
 		this.duracion = duracion;
 	}
