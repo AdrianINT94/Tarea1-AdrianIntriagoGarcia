@@ -77,18 +77,22 @@ public class Intervencion extends Cita{
 	
 	public boolean añadirCirujano(Cirujano cirujano) {
 		if(cirujano == null) {
-			System.out.println("Una intervencion admite como maximo dos cirujanos");
+			System.out.println("El cirujano no puede ser nulo");
 			return false;
 		}
 		if(listacirujanos.size() >=2) {
 			System.out.println("intervencion admite como maximo dos cirujanos");
 			return false;
 		}
+		if(listacirujanos.contains(cirujano)) {
+			System.out.println("Este cirujano ya esta añadido");
+			return false;
+		}
 	
 	listacirujanos.add(cirujano);
 	return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Intervencion [enfermeria=" + enfermeria + ", duracion=" + duracion + ", materialutilizado="

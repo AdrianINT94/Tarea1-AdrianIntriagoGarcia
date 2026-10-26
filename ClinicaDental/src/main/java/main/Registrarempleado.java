@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Cirujano;
+import model.Especialidad;
+
 public class Registrarempleado {
 
-	
 		public void registrar(Scanner leer) {
 	
 		System.out.println("Nombre:");
@@ -38,9 +41,6 @@ public class Registrarempleado {
 		
 		System.out.println("Perfil (secretariado/enfermeria/cirujano):");
 		String perfil = leer.nextLine();
-		
-		
-		
 		
 		//validaciones usuario y contraseña
 		if(username.isBlank() || password.isBlank()) {
@@ -93,7 +93,17 @@ public class Registrarempleado {
 			break;
 		
 		case "cirujano":
-			System.out.println("Especialidades");
+			System.out.println("Especialidades..");
+			System.out.println("1. Odontologia");
+			System.out.println("2. Fisioterapia");
+		    System.out.println("3. Ginecologia");
+		    System.out.println("4. Cirugia plastica");
+		    System.out.println("5. Digestivo");
+		    System.out.println("6. Cirugia pediatrica");
+		    System.out.println("7. Radiologia");
+		    System.out.println("8. Geriatria");
+		    
+		    Cirujano cirujano = new Cirujano(null,nombre,apellidos,telefono,nif,direccion,email,new ArrayList<Especialidad>());
 			String especialidades = leer.nextLine();
 			break;
 		}

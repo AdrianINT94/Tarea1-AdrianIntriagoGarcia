@@ -2,6 +2,7 @@ package main;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.Alergia;
@@ -20,10 +21,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Sesion actual= new Sesion();
-		actual.cerrarSesion();
 		Scanner leer = new Scanner(System.in);
-		int opcion;
+		ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
 		
+		int opcion;
 		do {
 			
 			System.out.println(".Menu principal");
@@ -76,7 +77,7 @@ public class Main {
 						actual = nueva;
 						System.out.println("Bienvenido :" + actual.getNombre());
 						System.out.println("Perfil :" + actual.getPerfil());
-						MenuPerfil(actual,leer);
+						MenuPerfil(actual,leer,pacientes);
 					}else {
 						System.out.println("Usuario o contraseña incorrectos");
 					}
@@ -128,11 +129,8 @@ public class Main {
 			}
 		}while(opcionInvitado !=0);
 	}
-	
-	
-	
-	
-	public static void MenuPerfil(Sesion actual,Scanner leer) {
+
+	public static void MenuPerfil(Sesion actual,Scanner leer,ArrayList<Paciente>pacientes) {
 			switch(actual.getPerfil()) {
 				
 			case admin:
@@ -202,22 +200,107 @@ public class Main {
 				
 			case secretariado:
 				System.out.println("Menu secretariado");
-				System.out.println("Opciones secretariado");
+				System.out.println("1.Registrar pacientes");
+				System.out.println("2.Gestionar empleados");
+				System.out.println("3.Gestionar citas con pacientes");
+				System.out.println("0.Volver al menu principal");
+				
+				int opcionsecretariado = leer.nextInt();
+				leer.nextLine();
+				
+					switch(opcionsecretariado) {
+					case 1:
+						System.out.println("1.Registrar pacientes");
+						registrarPaciente(leer,pacientes);
+						break;
+						
+					case 2:
+						System.out.println("2.Gestionar empleados");
+						break;
+						
+					case 3:
+						System.out.println("3.Gestionar citas con pacientes");
+						break;
+						
+					case 0: 
+						System.out.println("0.Volver al menu principal");
+						break;
+						
+					default :
+						System.out.println("Opcion no valida");
+						break;
+					}
+
 				break;
 			
 			case enfermeria:
 				System.out.println("Menu enfermeria");
-				System.out.println("Opciones de enfermeria");
+				System.out.println("1.Registrar revision");
+				System.out.println("2.Registrar intervencion");
+				System.out.println("3.Actualizar el informe de tratamiento");
+				System.out.println("0.Volver al menu principal");
+				System.out.println("Elegir opcion");
+				
+				int opcionEnfermeria = leer.nextInt();
+				leer.nextLine();
+				
+				switch(opcionEnfermeria) {
+					case 1:
+						System.out.println("Registrar revision");
+						break;
+					case 2:
+						System.out.println("Registrar intervencion");
+						break;
+						
+					case 3 :
+						System.out.println("Actualizar el informe de tratamiento");
+						break;
+					case 0:
+						System.out.println("Volviendo al menu principal");
+						break;
+					default:
+						System.out.println("Opcion no valida");
+						break;
+							
+				}
 				break;
 				
 			case invitado:
 				System.out.println("No hay sesion iniciada");
 				break;
+			}
 
 			}
 		
 		
-		
+	public static void registrarPaciente(Scanner leer,ArrayList<Paciente> pacientes) {
+			
+			System.out.println("ID del paciente");
+			Long id =Long.parseLong(leer.nextLine());
+			
+			System.out.println("Nombre completo");
+			String nombre = leer.nextLine();
+
+			System.out.println("Fecha nacimiento (AAAA-MM-DD)");
+			LocalDate fecha = LocalDate.parse(leer.nextLine());
+			
+			System.out.println("Telefono");
+			String telefono = leer.nextLine();
+			
+			System.out.println("Direccion");
+			String direccion = leer.nextLine();
+			
+			System.out.println("Nif");
+			String nif = leer.nextLine();
+			
+			System.out.println("Email");
+			String email = leer.nextLine();
+
+			Paciente p = new Paciente(id, nombre, telefono, fecha, direccion, nif, email);
+			pacientes.add(p);
+
+			System.out.println("Paciente registrado");
+		}
 		
 		
 		
@@ -278,4 +361,4 @@ public class Main {
 			
 		}
 
-		}
+		
