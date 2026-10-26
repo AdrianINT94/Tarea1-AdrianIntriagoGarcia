@@ -27,16 +27,28 @@ public class Main {
 		do {
 			
 			System.out.println(".Menu principal");
-			System.out.println("1.Iniciar Sesion");
-			System.out.println("2.Cerrar sesion");
-			System.out.println("3.Salir del programa");
+			System.out.println("1.Sesion invitado");
+			System.out.println("2.Iniciar Sesion");
+			System.out.println("3.Cerrar sesion");
+			System.out.println("4.Salir del programa");
 			System.out.println("Elegir una opcion");
 			
 			opcion=leer.nextInt();
 			leer.nextLine();
 			
 			switch(opcion) {
-				case 1: 
+			
+				case 1:
+				if(actual.isActivo()) {
+					System.out.println("Cierra la sesion actual");
+					break;
+				}
+				System.out.println("Bienvenido como invitado");
+				MenuInvitado(leer);
+				break;
+			
+			
+				case 2: 
 					if(actual.isActivo()) {
 						System.out.println("Ya hay una sesion iniciada.Cierra sesion para entrar");
 						break;
@@ -71,7 +83,7 @@ public class Main {
 					break;
 				
 					
-				case 2:
+				case 3:
 					if(actual.isActivo()) {
 						actual.cerrarSesion();
 						System.out.println("Sesion cerrada");
@@ -80,16 +92,46 @@ public class Main {
 					}
 					
 					break;	
-				case 3:
+				case 4:
 					System.out.println("Saliendo del programa..");
 					break;
 				
 			}
-			}while(opcion != 3) ;
+			}while(opcion != 4) ;
 				
 			leer.close();
 		
 	}
+	public static void MenuInvitado(Scanner leer) {
+		int opcionInvitado;
+		
+		do {
+			System.out.println("Menu invitado");
+			System.out.println("1.Consultar informacion");
+			System.out.println("0.Volver al menu principal");
+			System.out.println("Elegir una opcion");
+			
+			opcionInvitado = leer.nextInt();
+			leer.nextLine();
+			
+			switch(opcionInvitado) {
+			case 1:
+				System.out.println("Consultar informacion");
+				break;
+				
+			case 0:
+				System.out.println("Volviendo a menu principal");
+				break;
+			default:
+				System.out.println("Opcion no valida");
+				break;
+			}
+		}while(opcionInvitado !=0);
+	}
+	
+	
+	
+	
 	public static void MenuPerfil(Sesion actual,Scanner leer) {
 			switch(actual.getPerfil()) {
 				
@@ -135,6 +177,7 @@ public class Main {
 								gestion.CrearAlergia();
 								break;
 							case 3:
+								gestion.editarAlergia();
 								break;
 							case 0:
 								System.out.println("Volviendo al menu adminsitrador");

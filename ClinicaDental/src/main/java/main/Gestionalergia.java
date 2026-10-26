@@ -68,7 +68,6 @@ public class Gestionalergia {
 			
 			Scanner leer= new Scanner(System.in);
 			
-			
 			System.out.println("Nombre de la alergia:");
 			String nombreAlergia = leer.nextLine();
 			
@@ -79,7 +78,26 @@ public class Gestionalergia {
 			String principio = leer.nextLine();
 			
 			System.out.println("Dosis maxima:");
-			int dosis = Integer.parseInt(leer.nextLine());
+			int dosis ;
+				//validaciones 
+			try {
+				dosis = Integer.parseInt(leer.nextLine());
+			}catch(NumberFormatException e) {
+				System.out.println("la dosis debe ser un numero entero ");
+				return;
+			}
+			
+			if(nombreAlergia.isBlank() || nombremedicamento.isBlank()|| principio.isBlank() ||dosis<=0) {
+				System.out.println("Los datos no son validos");
+				return;
+			}
+			System.out.println("Quieres guardar esta alergia?(s/n)");
+			String confirmar =leer.nextLine();
+			
+			if(!confirmar.equalsIgnoreCase("s")) {
+				System.out.println("Creacion cancelada");
+				return;
+			}
 			
 			Medicamento medicamento = new Medicamento(id,nombremedicamento,principio,dosis);
 			Alergia alergia = new Alergia(id,nombreAlergia,medicamento);
@@ -99,5 +117,70 @@ public class Gestionalergia {
 		
 		}
 		
+		public void editarAlergia() {
+			Scanner leer= new Scanner (System.in);
+			
+			System.out.println("Introducir el id de la alergia para editar");
+			long id =Long.parseLong(leer.nextLine());
+			
+			
+			
+			try {
+				
+				File carpeta = new File("src/main/resources/Alergia");
+				File archivo = new File(carpeta,id + ".dat");
+				
+				
+				FileInputStream fichero = new FileInputStream(archivo);
+				ObjectInputStream entrada = new ObjectInputStream(fichero);
+				
+				Alergia alergia =(Alergia) entrada.readObject();
+				entrada.close();
+				
+				System.out.println("Alergia actual");
+				System.out.println(alergia);
+				
+				System.out.println("Nuevo nombre de la alergia");
+				String nombre = leer.nextLine();
+				
+				System.out.println("Nuevo medicamento");
+				String nombremedicamento = leer.nextLine();
+				
+				System.out.println("Nuevo principio activo");
+				String principio = leer.nextLine();
+				
+				System.out.println("Nueva dosis");
+				int dosis = leer.nextInt();
+				//validaciones
+				
+				if(nombre.isBlank()  || nombremedicamento.isBlank() || principio.isBlank() || dosis <=0) {
+					System.out.println("Los datos no son validos");
+					return;
+				}
+				System.out.println("Quieres guardar los cambios(s/n)");
+				String confirmar = leer.nextLine();
+				
+				if(!confirmar.equalsIgnoreCase("s")) {
+					System.out.println("Edicion cancelada");
+					return;
+				}
+
+				alergia.setNombre(nombremedicamento);
+				Medicamento medicamento = alergia.getMedicamento();
+				medicamento.setNombre(nombre);
+				medicamento.setPrincipio(principio);
+				medicamento.setDosis(dosis);
+				
+				FileOutputStream  ficheroSalida = new FileOutputStream(archivo);
+				ObjectOutputStream salida = new ObjectOutputStream(ficheroSalida);
+				salida.writeObject(alergia);
+				
+				salida.close();
+				System.out.println("Alergia editada bien");
+				
+			}catch(Exception e) {
+				System.out.println("Error al editar las alergias" + e.getMessage());
+			}
+		}
 		
 	}
