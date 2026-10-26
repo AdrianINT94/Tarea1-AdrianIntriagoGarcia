@@ -98,8 +98,8 @@ public class Paciente {
 	}
 
 	// añadir tratamiento
-	public void añadirTratamiento(Tratamiento Tratamiento) {
-		tratamientos.add(Tratamiento);
+	public void añadirTratamiento(Tratamiento tratamiento) {
+		tratamientos.add(tratamiento);
 	}
 	
 	
@@ -110,7 +110,8 @@ public class Paciente {
 	@Override
 	public String toString() {
 		return "Paciente [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", fechanacimiento="
-				+ fechanacimiento + ", direccion=" + direccion + ", nif=" + nif + ", email=" + email + "]";
+				+ fechanacimiento + ", direccion=" + direccion + ", nif=" + nif + ", email=" + email + ", historial=" + historial
+	            + ", tratamientos=" + tratamientos + "]";
 	}
 	
 	

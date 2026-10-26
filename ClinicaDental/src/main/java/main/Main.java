@@ -19,15 +19,17 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Sesion actual= null;
+		Sesion actual= new Sesion();
+		actual.cerrarSesion();
 		Scanner leer = new Scanner(System.in);
 		int opcion;
 		
 		do {
 			
 			System.out.println(".Menu principal");
-			System.out.println("1.IniciarSesion");
-			System.out.println("2.Salir del programa");
+			System.out.println("1.Iniciar Sesion");
+			System.out.println("2.Cerrar sesion");
+			System.out.println("3.Salir del programa");
 			System.out.println("Elegir una opcion");
 			
 			opcion=leer.nextInt();
@@ -35,25 +37,141 @@ public class Main {
 			
 			switch(opcion) {
 				case 1: 
+					if(actual.isActivo()) {
+						System.out.println("Ya hay una sesion iniciada.Cierra sesion para entrar");
+						break;
+					}
+					
 					System.out.println("Introducir username");
 					String username = leer.nextLine();
 					System.out.println("Introducir password");
 					String password = leer.nextLine();
-					System.out.println("El usuario introducido es " +username);
-				break;	
-			
+					
+					Autenticacion autenticacion = new Autenticacion();
+					Sesion nueva  = null;
+					
+					if(username.isBlank() || password.isBlank()) {
+						System.out.println("No puedes dejar campos vacios");
+						break;
+					}
+					if(autenticacion.comprobarAdmin(username, password)) {
+						nueva = new Sesion(username,"Administrador",model.Perfil.admin,true);
+					}else {
+						nueva = autenticacion.sesionPersonal(username, password);
+					}
+					
+					if(nueva != null) {
+						actual = nueva;
+						System.out.println("Bienvenido :" + actual.getNombre());
+						System.out.println("Perfil :" + actual.getPerfil());
+						MenuPerfil(actual,leer);
+					}else {
+						System.out.println("Usuario o contraseña incorrectos");
+					}
+					break;
+				
+					
 				case 2:
-				System.out.println("Saliendo del programa..");
-				break;	
-				default:
-				System.out.println("Opcion no valida");
-				break;
+					if(actual.isActivo()) {
+						actual.cerrarSesion();
+						System.out.println("Sesion cerrada");
+					}else {
+						System.out.println("No hay ninguna sesion inicada");
+					}
+					
+					break;	
+				case 3:
+					System.out.println("Saliendo del programa..");
+					break;
 				
 			}
-			}while(opcion != 2) ;
+			}while(opcion != 3) ;
 				
 			leer.close();
 		
+	}
+	public static void MenuPerfil(Sesion actual,Scanner leer) {
+			switch(actual.getPerfil()) {
+				
+			case admin:
+				System.out.println("Menu administrador");
+				System.out.println("1.Registrar empleado");
+				System.out.println("2.Gestionar alergias");
+				System.out.println("0.Volver al menu principal");
+				
+				int opcionAdmin = leer.nextInt();
+				leer.nextLine();
+				
+				switch(opcionAdmin) {
+					case 1 :
+						System.out.println("Has seleccionado registrar empleado");
+						Registrarempleado registro = new Registrarempleado();
+						registro.registrar(leer);
+						
+						break;
+					
+					case 2 :
+						System.out.println("Has seleccionado gestionar alergias");
+						Gestionalergia gestion = new Gestionalergia();
+						int opcionAlergia;
+						
+						
+						do {
+							System.out.println("Gestion Alergias");
+							System.out.println("1.Ver alergia");
+							System.out.println("2.Crear alergia");
+							System.out.println("3.Editar alergia");
+							System.out.println("0.Volver");
+							System.out.println("Elige una opcion");
+							
+							opcionAlergia = leer.nextInt();
+							leer.nextLine();
+							
+							switch(opcionAlergia) {
+							case 1:
+								gestion.leerAlergias();
+								break;
+							case 2:
+								gestion.CrearAlergia();
+								break;
+							case 3:
+								break;
+							case 0:
+								System.out.println("Volviendo al menu adminsitrador");
+								break;
+							default:
+								System.out.println("Opcion no valida");
+								break;
+							}
+						}while(opcionAlergia !=0);
+						
+						break;
+					
+					case 0 :
+						System.out.println("Volviendo al menu principal");
+						break;
+						
+					default:
+						System.out.println("Opcion no valida");
+						break;	
+				}
+				break;
+				
+			case secretariado:
+				System.out.println("Menu secretariado");
+				System.out.println("Opciones secretariado");
+				break;
+			
+			case enfermeria:
+				System.out.println("Menu enfermeria");
+				System.out.println("Opciones de enfermeria");
+				break;
+				
+			case invitado:
+				System.out.println("No hay sesion iniciada");
+				break;
+
+			}
 		
 		
 		
@@ -95,8 +213,6 @@ public class Main {
 		Adrian.añadirTratamiento(t);
 		
 		
-		
-		
 		Historial h = new Historial(1L,1001L,"Historial medico Adrian");
 		Adrian.setHistorial(h);//historial
 		
@@ -108,8 +224,6 @@ public class Main {
 		Adrian.getHistorial().añadirAlergia(a);
 		
 		
-		
-		
 		System.out.println(Adrian);
 		System.out.println(t.getListacitas());
 		System.out.println(Adrian.getTratamientos());
@@ -118,6 +232,7 @@ public class Main {
 		System.out.println(a.getMedicamento());
 		System.out.println(h.getListalergias());
 		*/
+			
 		}
 
 		}

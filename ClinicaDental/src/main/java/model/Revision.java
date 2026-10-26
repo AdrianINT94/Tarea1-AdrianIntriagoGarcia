@@ -4,28 +4,20 @@ import java.time.LocalDateTime;
 
 public class Revision extends Cita{
 	
-	private String anotaciones;
+	
 	
 	public Revision() {
 		super();
 	}
 
-	public Revision(Long id, LocalDateTime fechaHora,String anotaciones) {
-		super(id, fechaHora);
-		this.anotaciones=anotaciones;
-	}
-
-	public String getAnotaciones() {
-		return anotaciones;
-	}
-
-	public void setAnotaciones(String anotaciones) {
-		this.anotaciones = anotaciones;
+	public Revision(Long id, LocalDateTime fechaHora,String anotacion) {
+		super(id, fechaHora,anotacion);
+		
 	}
 
 	@Override
 	public String toString() {
-		return "Revisiones [anotaciones=" + anotaciones + ", toString()=" + super.toString() + "]";
+		return "Revisiones ["  + super.toString() + "]";
 	}
 
 	

@@ -25,14 +25,16 @@ public class Cirujano extends Empleado{
 	public void setEspecialidades(ArrayList<Especialidad> especialidades) {
 		this.especialidades = especialidades;
 	}
+	
+	//añadir especialidad
+	public void añadirespecialidad(Especialidad especialidad) {
+		this.especialidades.add(especialidad);
+	}
 
 	 @Override
 	    public String toString() {
 	        return "Cirujano [" + super.toString()
 	                + ", especialidades=" + especialidades + "]";
-	
-	
-	
 	
 	 }
 }

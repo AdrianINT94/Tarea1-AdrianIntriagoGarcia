@@ -1,0 +1,9 @@
+luisdbb|miP@ss|Luis de Blas|secretariado
+camila|cam1las|Camila Sanchez|secretariado
+patrigc|patri|Patricia González|enfermeria
+alberto|alberto|Alberto Garcia|enfermeria
+michael|Michael_33|Michael Lays|enfermeria
+sonya|sonya|Sonya Ladowick|enfermeria
+
+
+prueba02|clave123|Empleado Prueba|secretariado

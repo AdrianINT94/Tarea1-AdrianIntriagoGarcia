@@ -8,6 +8,7 @@ public class Tratamiento {
 	private Long id;
 	private String nombre;
 	private LocalDate fechainicio;
+	private String informe;
 	private boolean consentimiento = false;
 	
 	private ArrayList<Cita> listacitas= new ArrayList<Cita>();
@@ -68,6 +69,15 @@ public class Tratamiento {
 	
 	public ArrayList<Cita> getListacitas() {
 		return listacitas;
+	}
+	
+	
+	public String getInforme() {
+		return informe;
+	}
+
+	public void setInforme(String informe) {
+		this.informe = informe;
 	}
 
 	@Override

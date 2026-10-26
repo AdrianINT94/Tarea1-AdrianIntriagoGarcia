@@ -1,6 +1,8 @@
 package model;
 
-public class Alergia {
+import java.io.Serializable;
+
+public class Alergia implements Serializable{
 	
 	private Long id;
 	private String nombre;
@@ -39,9 +41,14 @@ public class Alergia {
 	public Medicamento getMedicamento() {
 		return medicamento;
 	}
+	
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
+	}
+	
 	@Override
 	public String toString() {
-		return "Alergias [id=" + id + ", nombre=" + nombre + "]";
+		return "Alergias [id=" + id + ", nombre=" + nombre + ", medicamento=" + medicamento + "]";
 	}
 
 		

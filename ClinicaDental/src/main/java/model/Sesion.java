@@ -2,35 +2,22 @@ package model;
 
 public class Sesion {
 	
-	private Sesion sesion;
+	
 	private String username;
 	private String nombre;
-	private String perfil ;
+	private Perfil perfil ;
 	private boolean activo ;
-	
 	
 	public Sesion() {
 		
 	}
-	public Sesion(Sesion sesion, String username, String nombre, String perfil, boolean activo) {
+	public Sesion( String username, String nombre, Perfil perfil, boolean activo) {
 		super();
-		this.sesion = sesion;
 		this.username = username;
 		this.nombre = nombre;
 		this.perfil = perfil;
 		this.activo = activo;
 	}
-
-
-	public Sesion getSesion() {
-		return sesion;
-	}
-
-
-	public void setSesion(Sesion sesion) {
-		this.sesion = sesion;
-	}
-
 
 	public String getUsername() {
 		return username;
@@ -52,12 +39,12 @@ public class Sesion {
 	}
 
 
-	public String getPerfil() {
+	public Perfil getPerfil() {
 		return perfil;
 	}
 
 
-	public void setPerfil(String perfil) {
+	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 
@@ -73,21 +60,18 @@ public class Sesion {
 	
 	// motodo cerrar sesion
 	public void cerrarSesion() {
-		
+		username = null;
+		nombre = null;
+		perfil = Perfil.invitado;
+		activo = false;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Sesion [sesion=" + sesion + ", username=" + username + ", nombre=" + nombre + ", perfil=" + perfil
+		return "Sesion [, username=" + username + ", nombre=" + nombre + ", perfil=" + perfil
 				+ ", activo=" + activo + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	
 }
